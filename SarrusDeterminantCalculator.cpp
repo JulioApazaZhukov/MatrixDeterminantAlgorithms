@@ -15,11 +15,23 @@ void printMatrix(int matrix[3][3]){
 	}
 }
 
+void calculateDeterminant(int matrix[3][3]){
+	int product = 0, i = 0, j = 0;
+	product = matrix[i][j];
+    for (i = 0; i < 3; i++){
+		product *= matrix[i][j];
+		j++;
+	}
+	cout << product;
+}
+
 int main(){
     int matrix[3][3] = {{1, 2, 3},
                         {4, 5, 6},
                         {7, 8, 9}};
-    printMatrix(matrix);
+    
+	printMatrix(matrix);
+	calculateDeterminant(matrix);
 
     return 0;
 }
