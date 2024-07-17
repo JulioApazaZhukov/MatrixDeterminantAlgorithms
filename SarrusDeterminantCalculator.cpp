@@ -27,7 +27,7 @@ void printExtendedMatrix(int matrix[3][5]){
 }
 
 // function to increase the number of columns of the matrix to be able to apply the Sarrus algorithm
-int extendMatrix(int matrix[3][3]){
+int extendMatrix(int matrix[3][3], int I, int J){
 	int extendedMatrix[3][5];
 	for (int i = 0; i < 3; i++){
 		for (int j = 0; j < 3; j++) {
@@ -40,18 +40,28 @@ int extendMatrix(int matrix[3][3]){
 	extendedMatrix[0][4] = matrix[0][1];
 	extendedMatrix[1][4] = matrix[1][1];
 	extendedMatrix[2][4] = matrix[2][1];
-	printExtendedMatrix(extendedMatrix);
-	return extendedMatrix[3][5];
+	//printExtendedMatrix(extendedMatrix);
+	/*for (int i = 0; i < 3; i++){
+		for (int j = 0; j < 5; j++) {
+			return extendedMatrix[i][j];
+		}
+	}*/
+	return extendedMatrix[I][J];
 }
 
 void sarrusAlgorithm(int matrix[3][5]){
-	int positiveDiagonalProducts = 1;
-	int j = 0;
-    for (int i = 0; i < 3; i++){
-		positiveDiagonalProducts *= matrix[i][j];
-		j++;
+	for (int n = 0; n < 3; n++){
+		int i = 0;
+		int j = n;
+		int positiveDiagonalProduct = matrix[i][j];
+		//cout << endl << positiveDiagonalProduct << endl;
+		for (i = 0; i < 3; i++){
+			positiveDiagonalProduct = positiveDiagonalProduct * matrix[i][j];
+			j++;
+			cout << i << " " << j;
+		}
+		cout << endl << positiveDiagonalProduct << endl;
 	}
-	cout << endl << positiveDiagonalProducts << endl;
 }
 
 int main(){
@@ -64,8 +74,17 @@ int main(){
     
 	printMatrix(matrix);
 	cout << endl;
+
+	int ExtendedMatrix[3][5];
+	for (int i = 0; i < 3; i++){
+		for (int j = 0; j < 5; j++) {
+			ExtendedMatrix[i][j] = extendMatrix(matrix, i, j);
+		}
+	}
 	//extendMatrix(matrix);
-	int ExtendedMatrix[3][5] {extendMatrix(matrix)};
+	//ExtendedMatrix[3][5] = {extendMatrix(matrix)};
+	printExtendedMatrix(ExtendedMatrix);
+	//cout << endl << ExtendedMatrix[0][0] << endl;
 	sarrusAlgorithm(ExtendedMatrix);
 
     return 0;
