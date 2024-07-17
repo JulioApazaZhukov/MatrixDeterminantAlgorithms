@@ -49,7 +49,8 @@ int extendMatrix(int matrix[3][3], int I, int J){
 	return extendedMatrix[I][J];
 }
 
-void sarrusAlgorithm(int matrix[3][5]){
+int sarrusAlgorithm(int matrix[3][5]){
+	int determinant = 0;
 	for (int n = 0; n < 3; n++){
 		int i = 0;
 		int j = n;
@@ -58,26 +59,29 @@ void sarrusAlgorithm(int matrix[3][5]){
 		cout << i << " " << j << " | ";
 		for (i = 0; i < 3; i++){
 			positiveDiagonalProduct = positiveDiagonalProduct * matrix[i][j];
-			j++;
 			cout << i << " " << j << " | ";
+			j++;
 		}
 		cout << endl << positiveDiagonalProduct << endl;
-		cout << endl;	
+		cout << endl;
+		determinant += positiveDiagonalProduct;
 	}
 	for (int n = 0; n < 3; n++){
 		int i = 0;
-		int j = 3 + n;
+		int j = 2 + n;
 		int negativeDiagonalProduct = 1;
 		//cout << endl << negativeDiagonalProduct << endl;
 		cout << i << " " << j << " | ";
 		for (i = 0; i < 3; i++){
 			//i = 0;
+			cout << i << " " << j << " | ";
 			negativeDiagonalProduct = negativeDiagonalProduct * matrix[i][j];
 			j--;
-			cout << i << " " << j << " | ";
 		}
-		cout << endl << negativeDiagonalProduct << endl;	
+		cout << endl << negativeDiagonalProduct << endl;
+		determinant -= negativeDiagonalProduct;
 	}
+	return determinant;
 }
 
 int main(){
@@ -97,11 +101,10 @@ int main(){
 			ExtendedMatrix[i][j] = extendMatrix(matrix, i, j);
 		}
 	}
-	//extendMatrix(matrix);
-	//ExtendedMatrix[3][5] = {extendMatrix(matrix)};
+
 	printExtendedMatrix(ExtendedMatrix);
 	//cout << endl << ExtendedMatrix[0][0] << endl;
-	sarrusAlgorithm(ExtendedMatrix);
+	cout << sarrusAlgorithm(ExtendedMatrix);
 
     return 0;
 }
