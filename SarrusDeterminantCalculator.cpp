@@ -53,14 +53,30 @@ void sarrusAlgorithm(int matrix[3][5]){
 	for (int n = 0; n < 3; n++){
 		int i = 0;
 		int j = n;
-		int positiveDiagonalProduct = matrix[i][j];
+		int positiveDiagonalProduct = 1;
 		//cout << endl << positiveDiagonalProduct << endl;
+		cout << i << " " << j << " | ";
 		for (i = 0; i < 3; i++){
 			positiveDiagonalProduct = positiveDiagonalProduct * matrix[i][j];
 			j++;
-			cout << i << " " << j;
+			cout << i << " " << j << " | ";
 		}
 		cout << endl << positiveDiagonalProduct << endl;
+		cout << endl;	
+	}
+	for (int n = 0; n < 3; n++){
+		int i = 0;
+		int j = 3 + n;
+		int negativeDiagonalProduct = 1;
+		//cout << endl << negativeDiagonalProduct << endl;
+		cout << i << " " << j << " | ";
+		for (i = 0; i < 3; i++){
+			//i = 0;
+			negativeDiagonalProduct = negativeDiagonalProduct * matrix[i][j];
+			j--;
+			cout << i << " " << j << " | ";
+		}
+		cout << endl << negativeDiagonalProduct << endl;	
 	}
 }
 
